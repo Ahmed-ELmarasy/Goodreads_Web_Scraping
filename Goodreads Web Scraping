@@ -1,0 +1,98 @@
+Goodreads Web Scraping & Exploratory Data Analysis
+
+1. Environment Setup & Libraries
+The project started by importing the core libraries required for data collection and analysis:
+•	Data Analysis: pandas, numpy
+•	Data Visualization: matplotlib, seaborn
+•	Web Scraping: requests, BeautifulSoup
+These libraries provided the necessary tools for scraping, cleaning, analyzing, and visualizing the data.
+
+2. Data Collection (Web Scraping)
+The main objective was to scrape data for the Top 100 highest-rated books from the Goodreads website.
+•	Website Connection:
+requests.get() was used with custom HTTP headers to simulate a real browser and bypass basic bot detection.
+•	HTML Parsing:
+BeautifulSoup was used to parse the HTML content and locate the table rows (<tr>) containing book information such as:
+o	Book title
+o	Author
+o	Score
+o	Number of votes
+•	Data Extraction & Storage:
+A loop was implemented to iterate through each book entry, extract the required data, clean text values (e.g., removing "score:"), and store the results in Python lists.
+•	Creating a DataFrame:
+The collected lists were converted into a pandas DataFrame for easier manipulation and analysis.
+
+3. Data Cleaning & Preprocessing
+This was a crucial step, as the scraped data contained mixed text and numeric values.
+•	Splitting Ratings Using Regex:
+Regular Expressions were used to separate:
+o	Average rating (avg_rating)
+o	Ratings count
+These values were originally combined in a single column.
+•	Data Type Conversion:
+Numeric columns such as Scores, Votes, and avg_rating were converted from strings to numeric values using pd.to_numeric to enable calculations.
+•	Saving Clean Data:
+The cleaned dataset was exported to a CSV file named goodreads_books.csv.
+
+4. Exploratory Data Analysis (EDA)
+Several analytical questions were explored to extract insights from the data:
+•	Highest Rated Book:
+Identified using nlargest() on the avg_rating column.
+•	Most Popular Book:
+Determined by finding the book with the highest number of ratings.
+•	Best Author:
+Calculated by counting the most frequently appearing author in the dataset.
+•	Correlation Analysis:
+The correlation between Votes and Scores was computed and resulted in a perfect positive correlation (1.00).
+•	General Statistics:
+Key statistics were calculated, such as the average rating of all books (4.63).
+
+5. Data Visualization
+Numerical insights were transformed into visual representations for better understanding:
+•	Ratings Distribution (Histogram):
+Showed that most book ratings are concentrated between 4.60 and 4.65.
+•	Ratings Count vs. Average Rating (Scatter Plot):
+Illustrated whether books with more ratings are necessarily higher in quality.
+•	Top 5 Books by Score (Bar Chart):
+A simple comparison of the highest-scoring books.
+•	Regression Plot:
+Confirmed the strong positive linear relationship between Votes and Scores.
+•	Top 15 Most Popular Books:
+A bar chart highlighting the books with the highest audience engagement.
+________________________________________
+ 
+الشرح باللغة العربية:
+
+1. إعداد البيئة والمكتبات (Setup & Libraries)
+بدأ المشروع باستدعاء المكتبات الأساسية لعملية التحليل والجمع:
+•	لتحليل البيانات: pandas, numpy.
+•	للرسم البياني (Visualization): matplotlib, seaborn.
+•	لجمع البيانات (Web Scraping): requests, BeautifulSoup.
+2. جمع البيانات (Web Scraping)
+الهدف كان سحب بيانات أفضل 100 كتاب تقييماً من موقع Goodreads.
+•	الاتصال بالموقع: تم استخدام requests.get مع تحديد headers لتجاوز حماية المتصفح ومحاكاة مستخدم حقيقي.
+•	استخراج العناصر: تم استخدام BeautifulSoup لتحليل كود الـ HTML ، ثم البحث عن العناصر التي تحتوي على معلومات الكتب (العنوان، المؤلف، التقييم، عدد الأصوات) داخل الوسم tr.
+•	التخزين: تم عمل حلقة تكرارية (Loop) للمرور على كل كتاب واستخراج البيانات وتنظيف النصوص (مثل إزالة كلمة "score:") وتخزينها في قوائم (Lists).
+•	إنشاء DataFrame: تم تحويل هذه القوائم إلى جدول بيانات pandas DataFrame ليسهل التعامل معه.
+3. تنظيف وتجهيز البيانات (Data Cleaning & Preprocessing)
+هذه خطوة جوهرية لأن البيانات المسحوبة كانت تحتوي على نصوص ورموز مختلطة بالأرقام.
+•	فصل التقييمات (Regex): تم استخدام التعابير النمطية (Regular Expressions) لفصل "متوسط التقييم" (avg rating) عن "عدد المقيمين" (ratings count) من عمود واحد كان يدمجهما.
+•	تحويل أنواع البيانات: تم تحويل الأعمدة الرقمية (مثل Scores, Votes, avg_rating) من نصوص (String) إلى أرقام فعلية باستخدام pd.to_numeric لتصبح قابلة للعمليات الحسابية.
+•	الحفظ: تم حفظ البيانات النظيفة في ملف goodreads_books.csv.
+4. التحليل الإحصائي والاستكشافي (EDA)
+تم طرح أسئلة محددة على البيانات واستخراج إجاباتها :
+•	أعلى الكتب تقييماً: تم استخدام nlargest لمعرفة الكتاب صاحب أعلى avg_rating.
+•	الأكثر شعبية: معرفة الكتاب الذي يمتلك أكبر عدد من التقييمات (ratings).
+•	أفضل مؤلف: حساب المؤلف الأكثر تكراراً في القائمة.
+•	الارتباط (Correlation): حساب معامل الارتباط بين عدد الأصوات (Votes) والنقاط (Scores)، وظهرت النتيجة ارتباطاً تاماً (1.00).
+•	إحصاءات عامة: مثل متوسط تقييم كل الكتب (4.63).
+5. تصوير البيانات (Data Visualization)
+تم تحويل الأرقام إلى رسوم بيانية لفهمها بشكل أسرع:
+•	توزيع التقييمات (Histogram): لرؤية كيف تتوزع تقييمات الكتب، وظهر أن أغلبها يتركز بين 4.60 و 4.65.
+•	العلاقة بين عدد التقييمات ومتوسط التقييم (Scatter Plot): لتوضيح ما إذا كان الكتاب الأكثر تقييماً هو بالضرورة الأعلى جودة.
+•	أفضل 5 كتب حسب النقاط (Bar Chart): مقارنة بسيطة لأعلى 5 كتب.
+•	علاقة خطية (Regression Plot): تأكيد العلاقة الطردية القوية بين الـ Votes والـ Scores.
+•	أكثر 15 كتاباً شعبية: رسم بياني يوضح الكتب التي حصلت على أكبر تفاعل من الجمهور.
+
+ملف المشروع: pdf
+ملف المشروع: ipynb
